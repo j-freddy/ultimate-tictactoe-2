@@ -1,14 +1,26 @@
 # Ultimate Tic-Tac-Toe
 
+Description here
+
 ## Prerequisites
+
+TODO
 
 ### Python
 
+TODO
+
 ### Pygame
+
+TODO
 
 ## Running the game
 
+TODO
+
 ## Game instructions
+
+TODO
 
 ## Notes
 
