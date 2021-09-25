@@ -1,2 +1,5 @@
-# ultimate-tictactoe-2
-My attempt at revisiting Ultimate Tic-Tac-Toe (now in Python)
+# Ultimate Tic-Tac-Toe
+
+## Notes
+
+MCTS: https://www.geeksforgeeks.org/ml-monte-carlo-tree-search-mcts/
