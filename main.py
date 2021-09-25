@@ -1,9 +1,11 @@
 import sys, pygame
+from game import Game
 
 pygame.init()
 
 screen = pygame.display.set_mode((600, 600))
 clock = pygame.time.Clock()
+game = Game()
 
 while True:
   clock.tick(60)
