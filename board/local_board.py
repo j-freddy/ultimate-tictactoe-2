@@ -7,9 +7,10 @@ from board.board import Board
 class LocalBoard(Board):
   def __init__(self):
     super().__init__()
-    self.cells = [Cell() for i in range(0, 9)]
-    self.cells[2].value = CellValue.X
-    self.cells[4].value = CellValue.Empty
+    self.cells = [Cell() for i in range(0, self.num_cells)]
   
   def get_value(self):
     return self.get_winner()
+  
+  def set_cell(self, row, col, value):
+    self.cells[row*self.num_cols + col] = Cell(value)
