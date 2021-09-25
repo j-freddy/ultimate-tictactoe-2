@@ -1,4 +1,3 @@
-from cell.cell_value import CellValue
 from cell.cell import Cell
 from board.board import Board
 

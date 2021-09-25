@@ -12,5 +12,3 @@ class Game:
     self.player.make_move(self.local_board, 2, 0)
     self.player.make_move(self.local_board, 2, 1)
     self.local_board.print()
-
-game = Game()
