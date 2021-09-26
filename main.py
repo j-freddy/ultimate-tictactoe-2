@@ -83,7 +83,7 @@ def on_click(board):
   col = math.floor(local_x / local_cell_dim)
   
   # Update cell
-  local_board.set_cell(row, col, CellValue.O)
+  game.make_move(local_board, row, col)
 
 # Create game
 game = Game()

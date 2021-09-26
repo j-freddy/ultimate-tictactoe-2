@@ -6,3 +6,6 @@ class Cell:
   
   def get_value(self):
     return self.value
+  
+  def is_empty(self):
+    return self.value == CellValue.Empty

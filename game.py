@@ -8,3 +8,15 @@ class Game:
     self.global_board = GlobalBoard()
     self.player_x = Player(CellValue.X)
     self.player_o = Player(CellValue.O)
+    self.current_player = self.player_x
+
+  def switch_players(self):
+    self.current_player = (self.player_x
+      if self.current_player == self.player_o
+      else self.player_o)
+  
+  def make_move(self, board, row, col):
+    valid_move = self.current_player.make_move(board, row, col)
+    
+    if valid_move:
+      self.switch_players()
