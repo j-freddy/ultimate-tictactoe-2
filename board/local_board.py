@@ -16,4 +16,4 @@ class LocalBoard(Board):
     return self.get_winner()
   
   def set_cell(self, row, col, value):
-    self.cells[row*self.num_cols + col] = Cell(value)
+    self.cells[self.get_cell_index(row, col)] = Cell(value)

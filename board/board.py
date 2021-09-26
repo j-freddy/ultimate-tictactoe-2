@@ -7,6 +7,12 @@ class Board:
     self.num_cols = 3
     self.cells = []
 
+  def get_cell_index(self, row, col):
+    return row * self.num_cols + col
+  
+  def get_cell(self, row, col):
+    return self.cells[self.get_cell_index(row, col)]
+
   def get_winner(self):
     return CellValue.X
   

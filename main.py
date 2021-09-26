@@ -45,8 +45,8 @@ def draw_local_board(board, board_dim, x, y):
       draw_cell(
         cell,
         cell_dim,
-        row * cell_dim + x,
-        col * cell_dim + y
+        col * cell_dim + x,
+        row * cell_dim + y
       )
 
 def draw_global_board(board):
@@ -60,19 +60,33 @@ def draw_global_board(board):
     draw_local_board(
       local_board,
       cell_dim,
-      row * cell_dim,
-      col * cell_dim
+      col * cell_dim,
+      row * cell_dim
     )
 
 def draw(game):
   draw_global_board(game.global_board)
 
+def on_click(board):
+  # Get local board clicked
+  global_cell_dim = int(SCREEN_DIM / board.num_rows)
+  (mouse_x, mouse_y) = pygame.mouse.get_pos()
+  row = math.floor(mouse_y / global_cell_dim)
+  col = math.floor(mouse_x / global_cell_dim)
+  local_board = board.get_cell(row, col)
+
+  # Get cell clicked on local board
+  local_cell_dim = int(global_cell_dim / local_board.num_rows)
+  local_x = mouse_x % global_cell_dim
+  local_y = mouse_y % global_cell_dim
+  row = math.floor(local_y / local_cell_dim)
+  col = math.floor(local_x / local_cell_dim)
+  
+  # Update cell
+  local_board.set_cell(row, col, CellValue.O)
+
 # Create game
 game = Game()
-
-screen.fill((255, 255, 255))
-draw(game)
-pygame.display.flip()
 
 ### Main loop
 
@@ -82,7 +96,9 @@ while True:
   for event in pygame.event.get():
     if event.type == pygame.QUIT:
       sys.exit()
+    if event.type == pygame.MOUSEBUTTONDOWN:
+      on_click(game.global_board)
 
-  # screen.fill((255, 255, 255))
-  # draw(game)
-  # pygame.display.flip()
+  screen.fill((255, 255, 255))
+  draw(game)
+  pygame.display.flip()
