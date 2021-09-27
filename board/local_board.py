@@ -22,9 +22,11 @@ class LocalBoard(Board):
     if self.check_win(CellValue.X):
       self.winner = CellValue.X
       self.finalised = True
+      return
     if self.check_win(CellValue.O):
       self.winner = CellValue.O
       self.finalised = True
+      return
     # Draw
     if self.check_filled():
       self.winner = CellValue.Empty
