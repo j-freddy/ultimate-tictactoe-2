@@ -8,6 +8,9 @@ class LocalBoard(Board):
   def __init__(self):
     super().__init__()
     self.cells = [Cell(CellValue.Empty) for i in range(0, self.num_cells)]
+    # Whether the board has a winner or is filled
+    self.finalised = False
+    self.active = False
   
   def get_value(self):
     return self.get_winner()

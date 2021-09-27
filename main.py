@@ -21,6 +21,10 @@ images = {
   "board-frame": load_image(os.path.join("img", "board-frame.png"))
 }
 
+gui_data = {
+  "highlight_colour": (255, 255, 0)
+}
+
 ### GUI
 
 def draw_cell(cell, dim, x, y):
@@ -29,8 +33,13 @@ def draw_cell(cell, dim, x, y):
   screen.blit(img_scaled, (x, y))
 
 def draw_local_board(board, board_dim, x, y):
-  # Draw frame
   d = board_dim
+
+  # Highlight board if active
+  if board.active:
+    pygame.draw.rect(screen, gui_data["highlight_colour"], (x, y, d, d))
+
+  # Draw frame
   img_frame = pygame.transform.smoothscale(images["board-frame"], (d, d))
   screen.blit(img_frame, (x, y))
 
@@ -65,7 +74,9 @@ def draw_global_board(board):
     )
 
 def draw(game):
+  screen.fill((255, 255, 255))
   draw_global_board(game.global_board)
+  pygame.display.flip()
 
 def on_click(board):
   # Get local board clicked
@@ -87,9 +98,9 @@ def on_click(board):
 
 # Create game
 game = Game()
+draw(game)
 
 ### Main loop
-
 while True:
   clock.tick(60)
 
@@ -98,7 +109,4 @@ while True:
       sys.exit()
     if event.type == pygame.MOUSEBUTTONDOWN:
       on_click(game.global_board)
-
-  screen.fill((255, 255, 255))
-  draw(game)
-  pygame.display.flip()
+      draw(game)
