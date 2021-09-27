@@ -10,6 +10,12 @@ class Game:
     self.player_o = Player(CellValue.O)
     self.current_player = self.player_x
 
+  def get_result(self):
+    return self.global_board.winner
+
+  def in_progress(self):
+    return self.global_board.winner == None
+
   def switch_players(self):
     self.current_player = (self.player_x
       if self.current_player == self.player_o
@@ -21,6 +27,14 @@ class Game:
     if valid_move:
       # Update status of prev local board
       board.update_status()
+      # Update status of global board
+      self.global_board.update_winner()
+
+      # Check if game is over
+      if not self.in_progress():
+        self.global_board.set_boards_inactive()
+        return True
+
       # Update active boards
       self.global_board.update_active_boards((row, col))
       # Switch players

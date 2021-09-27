@@ -81,7 +81,13 @@ def draw_global_board(board):
 
 def draw(game):
   screen.fill((255, 255, 255))
+
+  # Draw winner
+  if not game.in_progress():
+    screen.fill((0, 255, 0))
+
   draw_global_board(game.global_board)
+
   pygame.display.flip()
 
 def on_click(board):
@@ -114,5 +120,6 @@ while True:
     if event.type == pygame.QUIT:
       sys.exit()
     if event.type == pygame.MOUSEBUTTONDOWN:
-      on_click(game.global_board)
-      draw(game)
+      if game.in_progress():
+        on_click(game.global_board)
+        draw(game)

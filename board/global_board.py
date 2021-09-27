@@ -1,3 +1,4 @@
+from cell.cell_value import CellValue
 from board.board import Board
 from board.local_board import LocalBoard
 
@@ -26,3 +27,13 @@ class GlobalBoard(Board):
       self.set_boards_active()
     else:
       self.get_cell(row, col).active = True
+  
+  def update_winner(self):
+    if self.check_win(CellValue.X):
+      self.winner = CellValue.X
+      return
+    if self.check_win(CellValue.O):
+      self.winner = CellValue.O
+      return
+    if self.check_filled():
+      self.winner = CellValue.Empty
