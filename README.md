@@ -1,27 +1,48 @@
 # Ultimate Tic-Tac-Toe
 
-Description here
+Ultimate Tic-Tac-Toe is an extension of Tic-Tac-Toe that offers a big increase in complexity and strategy.
+
+This project is written in Python. You can find a JavaScript version here:\
+https://j-freddy.github.io/projects/ultimate-tictactoe/
 
 ## Prerequisites
 
-TODO
+### Install Python
 
-### Python
+Python 3.7.7 or greater is recommended. Check with:
 
-TODO
+```console
+$ python3 --version
+```
 
-### Pygame
+Download: https://www.python.org/downloads/
 
-TODO
+### Install Pygame
+
+```console
+$ python3 -m pip install -U pygame --user
+```
 
 ## Running the game
 
-TODO
+Inside the project directory, enter:
+
+```console
+$ python3 main.py
+```
+
+Alternatively, if you have Visual Studio Code, you can open the folder. Then, open main.py and click the triangle on the top right.
 
 ## Game instructions
 
-TODO
+- Each small 3×3 board is a local board, and the larger 3×3 board is the global board.
+- When a player plays a move, it sends their opponent to its relative location on the global board.
+- If a player wins on a local board, that board gets captured by the player.
+- If a player is sent to a local board that is full or captured, then that player may choose any other board.
+- A player wins by winning on the global board.
+
 
 ## Notes
 
-MCTS: https://www.geeksforgeeks.org/ml-monte-carlo-tree-search-mcts/
+I plan to implement an AI using MCTS.\
+https://www.geeksforgeeks.org/ml-monte-carlo-tree-search-mcts/
