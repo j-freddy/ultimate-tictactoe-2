@@ -19,8 +19,11 @@ class Game:
     valid_move = self.current_player.make_move(board, row, col)
     
     if valid_move:
-      self.global_board.set_boards_inactive()
-      self.global_board.get_cell(row, col).active = True
+      # Update status of prev local board
+      board.update_status()
+      # Update active boards
+      self.global_board.update_active_boards((row, col))
+      # Switch players
       self.switch_players()
     
     return valid_move

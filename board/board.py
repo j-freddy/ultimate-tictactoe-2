@@ -11,6 +11,7 @@ class Board:
       [0, 3, 6], [1, 4, 7], [2, 5, 8],
       [0, 4, 8], [2, 4, 6]
     ]
+    self.winner = None
 
   def get_cell_index(self, row, col):
     return row * self.num_cols + col
@@ -34,9 +35,6 @@ class Board:
         return True
     
     return False
-
-  def get_winner(self):
-    return CellValue.X
   
   def print(self):
     string = ""

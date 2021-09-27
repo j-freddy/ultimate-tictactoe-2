@@ -57,6 +57,12 @@ def draw_local_board(board, board_dim, x, y):
         col * cell_dim + x,
         row * cell_dim + y
       )
+  
+  # Draw winner
+  if board.get_value() != CellValue.Empty:
+    img = images["o"] if board.get_value() == CellValue.O else images["x"]
+    img_scaled = pygame.transform.smoothscale(img, (d, d))
+    screen.blit(img_scaled, (x, y))
 
 def draw_global_board(board):
   global_board = board

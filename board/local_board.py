@@ -13,7 +13,19 @@ class LocalBoard(Board):
     self.active = False
   
   def get_value(self):
-    return self.get_winner()
+    return self.winner if self.winner != None else CellValue.Empty
   
   def set_cell(self, row, col, value):
     self.cells[self.get_cell_index(row, col)] = Cell(value)
+  
+  def update_status(self):
+    if self.check_win(CellValue.X):
+      self.winner = CellValue.X
+      self.finalised = True
+    if self.check_win(CellValue.O):
+      self.winner = CellValue.O
+      self.finalised = True
+    # Draw
+    if self.check_filled():
+      self.winner = CellValue.Empty
+      self.finalised = True

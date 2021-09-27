@@ -15,3 +15,14 @@ class GlobalBoard(Board):
   def set_boards_inactive(self):
     for board in self.cells:
       board.active = False
+  
+  def update_active_boards(self, last_move):
+    (row, col) = last_move
+
+    self.set_boards_inactive()
+
+    next_board = self.get_cell(row, col)
+    if next_board.finalised:
+      self.set_boards_active()
+    else:
+      self.get_cell(row, col).active = True
