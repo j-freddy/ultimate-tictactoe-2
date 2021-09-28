@@ -1,12 +1,13 @@
 from board.global_board import GlobalBoard
 from cell.cell_value import CellValue
 from player.player_human import PlayerHuman
+from player.player_ai_random import PlayerAIRandom
 
 class Game:
   def __init__(self):
     self.global_board = GlobalBoard()
     self.player_x = PlayerHuman(CellValue.X)
-    self.player_o = PlayerHuman(CellValue.O)
+    self.player_o = PlayerAIRandom(CellValue.O)
     self.current_player = self.player_x
 
   def get_result(self):
@@ -40,3 +41,25 @@ class Game:
       self.switch_players()
     
     return valid_move
+  
+  # Returns whether move has been made
+  def handle_ai_iter(self):
+    if not self.current_player.is_ai():
+      return
+
+    ai = self.current_player
+
+    if ai.requires_init:
+      ai.algo_init()
+    ai.algo_iter(self)
+
+    if ai.chosen_move == None:
+      return False
+    else:
+      m = ai.chosen_move
+      valid_move = self.make_move(m["board"], m["row"], m["col"])
+
+      if not valid_move:
+        print("AI made an invalid move")
+
+      return True

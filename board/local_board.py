@@ -18,6 +18,16 @@ class LocalBoard(Board):
   def set_cell(self, row, col, value):
     self.cells[self.get_cell_index(row, col)] = Cell(value)
   
+  # Returns a list of legal moves, represented as cell indices
+  def get_legal_moves(self):
+    moves = []
+
+    for (i, cell) in enumerate(self.cells):
+      if cell.is_empty():
+        moves.append(i)
+    
+    return moves
+  
   def update_winner(self):
     if self.check_win(CellValue.X):
       self.winner = CellValue.X

@@ -1,3 +1,4 @@
+import math
 from cell.cell_value import CellValue
 
 class Board:
@@ -25,6 +26,11 @@ class Board:
   
   def get_cell(self, row, col):
     return self.cells[self.get_cell_index(row, col)]
+  
+  def get_row_col(self, index):
+    row = math.floor(index / self.num_cols)
+    col = index % self.num_cols
+    return (row, col)
 
   def check_filled(self):
     for cell in self.cells:

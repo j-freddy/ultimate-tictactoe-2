@@ -119,6 +119,9 @@ while True:
         on_click(game.global_board)
         draw(game)
 
-  # To do
+  # Handle AIs
   if game.current_player.is_ai() and game.in_progress():
-    pass
+    move_made = game.handle_ai_iter()
+    
+    if move_made:
+      draw(game)

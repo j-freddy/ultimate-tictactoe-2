@@ -7,6 +7,9 @@ class GlobalBoard(Board):
     self.cells = [LocalBoard() for i in range(0, self.get_num_cells())]
     self.set_boards_active()
   
+  def get_active_boards(self):
+    return list(filter(lambda board: board.active, self.cells))
+  
   def set_boards_active(self):
     for board in self.cells:
       if not board.finalised:

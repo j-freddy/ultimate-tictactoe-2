@@ -41,7 +41,6 @@ Alternatively, if you have Visual Studio Code, you can open the folder. Then, op
 - If a player is sent to a local board that is full or captured, then that player may choose any other board.
 - A player wins by winning on the global board.
 
-
 ## Programming notes
 
 ### Board result
@@ -54,8 +53,6 @@ Stored in `winner` attribute:
 - `CellValue.Empty` - Draw<sup>[1](#f1)</sup>
 
 <a name="f1"><sup>[1]</sup></a> If a local board ends in a draw, it has an empty value in the global board.
-
-
 
 ### Next steps
 
