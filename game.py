@@ -1,6 +1,5 @@
 from board.global_board import GlobalBoard
 from cell.cell_value import CellValue
-from cell.cell_value import CellValue
 from player.player_human import PlayerHuman
 
 class Game:
@@ -26,7 +25,7 @@ class Game:
     
     if valid_move:
       # Update status of prev local board
-      board.update_status()
+      board.update_winner()
       # Update status of global board
       self.global_board.update_winner()
 

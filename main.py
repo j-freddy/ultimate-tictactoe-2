@@ -1,12 +1,13 @@
 import sys, os, math, pygame
+from data import *
 from cell.cell_value import CellValue
 from game import Game
 
-pygame.init()
-
-SCREEN_WIDTH = 540
-SCREEN_HEIGHT = 540
+SCREEN_WIDTH = gui_data["screen_width"]
+SCREEN_HEIGHT = gui_data["screen_height"]
 SCREEN_DIM = min(SCREEN_WIDTH, SCREEN_HEIGHT)
+
+pygame.init()
 screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 clock = pygame.time.Clock()
 
@@ -21,18 +22,14 @@ images = {
   "board-frame": load_image(os.path.join("img", "board-frame.png"))
 }
 
-gui_data = {
-  "highlight_colour": (255, 255, 0)
-}
-
 ### GUI
 
-def draw_cell(cell, dim, x, y):
+def draw_cell(cell, x, y, dim):
   img = images["o"] if cell.get_value() == CellValue.O else images["x"]
   img_scaled = pygame.transform.smoothscale(img, (dim, dim))
   screen.blit(img_scaled, (x, y))
 
-def draw_local_board(board, board_dim, x, y):
+def draw_local_board(board, x, y, board_dim):
   d = board_dim
 
   # Highlight board if active
@@ -53,16 +50,14 @@ def draw_local_board(board, board_dim, x, y):
 
       draw_cell(
         cell,
-        cell_dim,
         col * cell_dim + x,
-        row * cell_dim + y
+        row * cell_dim + y,
+        cell_dim
       )
   
   # Draw winner
   if board.get_value() != CellValue.Empty:
-    img = images["o"] if board.get_value() == CellValue.O else images["x"]
-    img_scaled = pygame.transform.smoothscale(img, (d, d))
-    screen.blit(img_scaled, (x, y))
+    draw_cell(board, x, y, d)
 
 def draw_global_board(board):
   global_board = board
@@ -74,9 +69,9 @@ def draw_global_board(board):
 
     draw_local_board(
       local_board,
-      cell_dim,
       col * cell_dim,
-      row * cell_dim
+      row * cell_dim,
+      cell_dim
     )
 
 def draw(game):
@@ -84,7 +79,7 @@ def draw(game):
 
   # Draw winner
   if not game.in_progress():
-    screen.fill((0, 255, 0))
+    screen.fill(gui_data["winner_colour"])
 
   draw_global_board(game.global_board)
 
@@ -120,6 +115,10 @@ while True:
     if event.type == pygame.QUIT:
       sys.exit()
     if event.type == pygame.MOUSEBUTTONDOWN:
-      if game.in_progress() and game.current_player.interactable():
+      if game.current_player.is_human() and game.in_progress():
         on_click(game.global_board)
         draw(game)
+
+  # To do
+  if game.current_player.is_ai() and game.in_progress():
+    pass

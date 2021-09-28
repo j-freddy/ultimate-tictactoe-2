@@ -7,7 +7,7 @@ from board.board import Board
 class LocalBoard(Board):
   def __init__(self):
     super().__init__()
-    self.cells = [Cell(CellValue.Empty) for i in range(0, self.num_cells)]
+    self.cells = [Cell() for i in range(0, self.get_num_cells())]
     # Whether the board has a winner or is filled
     self.finalised = False
     self.active = False
@@ -18,7 +18,7 @@ class LocalBoard(Board):
   def set_cell(self, row, col, value):
     self.cells[self.get_cell_index(row, col)] = Cell(value)
   
-  def update_status(self):
+  def update_winner(self):
     if self.check_win(CellValue.X):
       self.winner = CellValue.X
       self.finalised = True

@@ -1,6 +1,6 @@
-import enum
+from enum import Enum
 
-class CellValue(enum.Enum):
+class CellValue(Enum):
   X = "X"
   O = "O"
   Empty = "-"

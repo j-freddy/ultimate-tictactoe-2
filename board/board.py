@@ -2,16 +2,23 @@ from cell.cell_value import CellValue
 
 class Board:
   def __init__(self):
-    self.num_cells = 9
     self.num_rows = 3
     self.num_cols = 3
     self.cells = []
     self.winning_cases = [
+      # Horizontal
       [0, 1, 2], [3, 4, 5], [6, 7, 8],
+      # Vertical
       [0, 3, 6], [1, 4, 7], [2, 5, 8],
+      # Diagonal
       [0, 4, 8], [2, 4, 6]
     ]
+    # None -> In progress
+    # CellValue.Empty -> Draw
     self.winner = None
+  
+  def get_num_cells(self):
+    return self.num_rows * self.num_cols
 
   def get_cell_index(self, row, col):
     return row * self.num_cols + col
@@ -35,6 +42,16 @@ class Board:
         return True
     
     return False
+  
+  def update_winner(self):
+    if self.check_win(CellValue.X):
+      self.winner = CellValue.X
+      return
+    if self.check_win(CellValue.O):
+      self.winner = CellValue.O
+      return
+    if self.check_filled():
+      self.winner = CellValue.Empty
   
   def print(self):
     string = ""

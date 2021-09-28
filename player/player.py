@@ -1,10 +1,18 @@
+from player.player_type import PlayerType
+
 class Player:
   def __init__(self, id):
     self.id = id
   
-  # Only human players can interact (click) with board
-  def interactable(self):
-    return False
+  # Interface methods
+  def get_type(self):
+    return None
+  
+  def is_human(self):
+    return self.get_type() == PlayerType.Human
+  
+  def is_ai(self):
+    return self.get_type() == PlayerType.AI
 
   # Do not call directly, instead call game.make_move()
   def make_move(self, board, row, col):

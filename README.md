@@ -42,7 +42,22 @@ Alternatively, if you have Visual Studio Code, you can open the folder. Then, op
 - A player wins by winning on the global board.
 
 
-## Notes
+## Programming notes
+
+### Board result
+
+Stored in `winner` attribute:
+
+- `None` - In progress
+- `CellValue.O` - O wins
+- `CellValue.X` - X wins
+- `CellValue.Empty` - Draw<sup>[1](#f1)</sup>
+
+<a name="f1"><sup>[1]</sup></a> If a local board ends in a draw, it has an empty value in the global board.
+
+
+
+### Next steps
 
 I plan to implement an AI using MCTS.\
 https://www.geeksforgeeks.org/ml-monte-carlo-tree-search-mcts/
