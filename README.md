@@ -23,15 +23,19 @@ Download: https://www.python.org/downloads/
 $ python3 -m pip install -U pygame --user
 ```
 
-## Running the game
+## Playing the game
 
-Inside the project directory, enter:
+### Player options
+
+This program is currently set to "Player vs AI". You can change the settings by editing `player_x` and `player_o` in `game.py`.
+
+### Running the game
 
 ```console
 $ python3 main.py
 ```
 
-Alternatively, if you have Visual Studio Code, you can open the folder. Then, open main.py and click the triangle on the top right.
+Alternatively, if you have Visual Studio Code, you can open the folder. Then, open `main.py` and click the triangle on the top right.
 
 ## Game instructions
 
@@ -56,5 +60,7 @@ Stored in `winner` attribute:
 
 ### Next steps
 
-I plan to implement an AI using MCTS.\
+Currently, the AI makes random moves.
+
+I plan to implement an AI that uses MCTS.\
 https://www.geeksforgeeks.org/ml-monte-carlo-tree-search-mcts/
