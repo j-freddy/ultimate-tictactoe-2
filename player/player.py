@@ -2,6 +2,10 @@ class Player:
   def __init__(self, id):
     self.id = id
   
+  # Only human players can interact (click) with board
+  def interactable(self):
+    return False
+
   # Do not call directly, instead call game.make_move()
   def make_move(self, board, row, col):
     if not (board.active and board.get_cell(row, col).is_empty()):

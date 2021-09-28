@@ -120,6 +120,6 @@ while True:
     if event.type == pygame.QUIT:
       sys.exit()
     if event.type == pygame.MOUSEBUTTONDOWN:
-      if game.in_progress():
+      if game.in_progress() and game.current_player.interactable():
         on_click(game.global_board)
         draw(game)

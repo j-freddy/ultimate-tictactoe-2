@@ -1,13 +1,13 @@
 from board.global_board import GlobalBoard
 from cell.cell_value import CellValue
 from cell.cell_value import CellValue
-from player.player import Player
+from player.player_human import PlayerHuman
 
 class Game:
   def __init__(self):
     self.global_board = GlobalBoard()
-    self.player_x = Player(CellValue.X)
-    self.player_o = Player(CellValue.O)
+    self.player_x = PlayerHuman(CellValue.X)
+    self.player_o = PlayerHuman(CellValue.O)
     self.current_player = self.player_x
 
   def get_result(self):
