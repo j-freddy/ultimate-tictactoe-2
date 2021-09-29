@@ -29,3 +29,10 @@ class GlobalBoard(Board):
       self.set_boards_active()
     else:
       self.get_cell(row, col).active = True
+
+  def clone(self):
+    cloned_board = GlobalBoard()
+    cloned_board.cells = [cell.clone() for cell in self.cells]
+    cloned_board.winner = self.winner
+
+    return cloned_board

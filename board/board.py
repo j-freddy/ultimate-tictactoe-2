@@ -58,7 +58,10 @@ class Board:
       return
     if self.check_filled():
       self.winner = CellValue.Empty
-  
+    
+  def clone(self):
+    pass
+
   def print(self):
     string = ""
 

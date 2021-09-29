@@ -41,3 +41,12 @@ class LocalBoard(Board):
     if self.check_filled():
       self.winner = CellValue.Empty
       self.finalised = True
+
+  def clone(self):
+    cloned_board = LocalBoard()
+    cloned_board.cells = [cell.clone() for cell in self.cells]
+    cloned_board.winner = self.winner
+    cloned_board.finalised = self.finalised
+    cloned_board.active = self.active
+
+    return cloned_board

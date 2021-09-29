@@ -42,6 +42,10 @@ class Game:
     
     return valid_move
   
+  def make_move_with_index(self, board, index):
+    (row, col) = board.get_row_col(index)
+    return self.make_move(board, row, col)
+  
   # Returns whether move has been made
   def handle_ai_iter(self):
     if not self.current_player.is_ai():
@@ -49,15 +53,21 @@ class Game:
 
     ai = self.current_player
 
+    # Initialises the AI if required (AI must be initialised per move)
     if ai.requires_init:
       ai.algo_init()
+
+    # Perform 1 iteration
     ai.algo_iter(self)
 
+    # Handle make move
     if ai.chosen_move == None:
       return False
     else:
       m = ai.chosen_move
-      valid_move = self.make_move(m["board"], m["row"], m["col"])
+      valid_move = self.make_move_with_index(m["board"], m["index"])
+      # Prepare for next move
+      ai.requires_init = True
 
       if not valid_move:
         print("AI made an invalid move")

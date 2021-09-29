@@ -11,7 +11,7 @@ class PlayerAI(Player):
   def __init__(self, id):
     super().__init__(id)
     self.requires_init = True
-    # Move is represented as { board, row, col }
+    # Move is represented as { board, index }
     self.chosen_move = None
   
   def get_type(self):
