@@ -1,3 +1,4 @@
+from game import Game
 from cell.cell_value import CellValue
 from board.local_board import LocalBoard
 from board.global_board import GlobalBoard

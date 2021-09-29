@@ -18,6 +18,13 @@ class LocalBoard(Board):
   def set_cell(self, row, col, value):
     self.cells[self.get_cell_index(row, col)] = Cell(value)
   
+  def check_filled(self):
+    for cell in self.cells:
+      if cell.get_value() == CellValue.Empty:
+        return False
+    
+    return True
+  
   # Returns a list of legal moves, represented as cell indices
   def get_legal_moves(self):
     moves = []

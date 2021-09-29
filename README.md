@@ -27,7 +27,7 @@ $ python3 -m pip install -U pygame --user
 
 ### Player options
 
-This program is currently set to "Player vs AI". You can change the settings by editing `player_x` and `player_o` in `game.py`.
+This program is currently set to "AI vs Player". You can change the settings by editing `player_x` and `player_o` in `game.py`.
 
 ### Running the game
 
@@ -57,10 +57,3 @@ Stored in `winner` attribute:
 - `CellValue.Empty` - Draw<sup>[1](#f1)</sup>
 
 <a name="f1"><sup>[1]</sup></a> If a local board ends in a draw, it has an empty value in the global board.
-
-### Next steps
-
-Currently, the AI makes random moves.
-
-I plan to implement an AI that uses MCTS.\
-https://www.geeksforgeeks.org/ml-monte-carlo-tree-search-mcts/

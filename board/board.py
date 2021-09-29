@@ -32,13 +32,6 @@ class Board:
     col = index % self.num_cols
     return (row, col)
 
-  def check_filled(self):
-    for cell in self.cells:
-      if cell.get_value() == CellValue.Empty:
-        return False
-    
-    return True
-
   def check_win(self, cell_value):
     cell_values = [cell.get_value() for cell in self.cells]
 
@@ -50,14 +43,7 @@ class Board:
     return False
   
   def update_winner(self):
-    if self.check_win(CellValue.X):
-      self.winner = CellValue.X
-      return
-    if self.check_win(CellValue.O):
-      self.winner = CellValue.O
-      return
-    if self.check_filled():
-      self.winner = CellValue.Empty
+    pass
     
   def clone(self):
     pass

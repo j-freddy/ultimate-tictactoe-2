@@ -17,8 +17,8 @@ class PlayerAI(Player):
   def get_type(self):
     return PlayerType.AI
 
-  def algo_init(self):
-    pass
+  def algo_init(self, game):
+    self.chosen_move = None
   
-  def algo_iter(self):
+  def algo_iter(self, game):
     pass

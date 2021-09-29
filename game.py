@@ -1,13 +1,15 @@
 from board.global_board import GlobalBoard
 from cell.cell_value import CellValue
+from player.player import Player
 from player.player_human import PlayerHuman
 from player.player_ai_random import PlayerAIRandom
+from player.player_ai_random_feedback import PlayerAIRandomFeedback
 
 class Game:
   def __init__(self):
     self.global_board = GlobalBoard()
-    self.player_x = PlayerHuman(CellValue.X)
-    self.player_o = PlayerAIRandom(CellValue.O)
+    self.player_x = PlayerAIRandomFeedback(CellValue.X)
+    self.player_o = PlayerHuman(CellValue.O)
     self.current_player = self.player_x
 
   def get_result(self):
@@ -55,7 +57,8 @@ class Game:
 
     # Initialises the AI if required (AI must be initialised per move)
     if ai.requires_init:
-      ai.algo_init()
+      ai.algo_init(self)
+      ai.requires_init = False
 
     # Perform 1 iteration
     ai.algo_iter(self)
@@ -73,3 +76,14 @@ class Game:
         print("AI made an invalid move")
 
       return True
+  
+  def clone(self):
+    game_clone = Game()
+    game_clone.global_board = self.global_board.clone()
+    game_clone.player_x = Player(CellValue.X)
+    game_clone.player_o = Player(CellValue.O)
+    game_clone.current_player = (game_clone.player_x
+      if self.current_player == self.player_x
+      else game_clone.player_o)
+
+    return game_clone
